@@ -8,6 +8,10 @@
 		<constructor-arg ref="sonyHand"/>
 		<constructor-arg ref="sonyLeg"/>
 		<constructor-arg ref="sonyHead"/>
+
+		<property name="hand" ref="toshibaHand"/>
+		<property name="leg" ref="toshibaLeg"/>
+		<property name="head" ref="toshibaHead"/>
 	</bean>
 
 	<bean id="sonyHand" class="ru.javabegin.RobotSpring.impls.sony.SonyHand"/>
