@@ -7,7 +7,7 @@
 
 
     <bean id="t1000" class="ru.javabegin.RobotSpring.impls.robot.ModelT1000"
-          p:hand-ref="toshibaHand" p:leg-ref="sonyLeg" p:head-ref="toshibaHead">
+          p:hand-ref="toshibaHand" p:leg-ref="sonyLeg" p:head-ref="sonyHead" scope="prototype">
 
         <constructor-arg value="silver" index="0" type="java.lang.String"/>
         <constructor-arg value="2006" index="1" type="int"/>
@@ -29,7 +29,7 @@
 
 
     <bean id="sonyHand" class="ru.javabegin.RobotSpring.impls.sony.SonyHand"/>
-    <bean id="sonyHead" class="ru.javabegin.RobotSpring.impls.sony.SonyHead"/>
+    <bean id="sonyHead" class="ru.javabegin.RobotSpring.impls.sony.SonyHead" scope="prototype"/>
     <bean id="sonyLeg" class="ru.javabegin.RobotSpring.impls.sony.SonyLeg"/>
 
     <bean id="toshibaHand" class="ru.javabegin.RobotSpring.impls.toshiba.ToshibaHand"/>
