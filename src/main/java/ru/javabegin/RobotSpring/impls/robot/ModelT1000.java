@@ -1,13 +1,13 @@
 package ru.javabegin.RobotSpring.impls.robot;
 
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
 import ru.javabegin.RobotSpring.interfaces.Hand;
 import ru.javabegin.RobotSpring.interfaces.Head;
 import ru.javabegin.RobotSpring.interfaces.Leg;
 import ru.javabegin.RobotSpring.interfaces.Robot;
 
-public class ModelT1000 implements Robot, BeanPostProcessor {
+public class ModelT1000 implements Robot, InitializingBean, DisposableBean {
 
 	private Hand hand;
 	private Leg leg;
@@ -115,14 +115,12 @@ public class ModelT1000 implements Robot, BeanPostProcessor {
 	}
 
 	@Override
-	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-		System.out.println("postProcessBeforeInitialization method for: " + beanName);
-		return bean;
+	public void destroy() throws Exception {
+		System.out.println(this + " - method destroy()");
 	}
 
 	@Override
-	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-		System.out.println("postProcessAfterInitialization method for: " + beanName);
-		return bean;
+	public void afterPropertiesSet() throws Exception {
+		System.out.println(this + " - method init()");
 	}
 }
