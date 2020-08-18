@@ -8,8 +8,11 @@
     <import resource="sony_context.xml"/>
 
 
+    <bean id="actionReplacement" class="ru.javabegin.RobotSpring.impls.conveyor.ActionReplacement"/>
+
     <bean id="t1000" class="ru.javabegin.RobotSpring.impls.robot.ModelT1000"
           parent="baseModel" scope="prototype">
+        <replaced-method name="action" replacer="actionReplacement"/>
 
 
         <constructor-arg value="silver" index="3" type="java.lang.String"/>
