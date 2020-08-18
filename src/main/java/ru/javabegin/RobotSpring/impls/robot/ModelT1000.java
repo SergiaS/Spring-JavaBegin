@@ -38,6 +38,7 @@ public class ModelT1000 implements Robot, InitializingBean, DisposableBean {
 	}
 
 	public ModelT1000(String color, int year, boolean soundEnabled) {
+		super();
 		this.color = color;
 		this.year = year;
 		this.soundEnabled = soundEnabled;
@@ -45,8 +46,8 @@ public class ModelT1000 implements Robot, InitializingBean, DisposableBean {
 
 	@Override
 	public void action() {
-		hand.catchSomething();
 		head.calc();
+		hand.catchSomething();
 		leg.go();
 		System.out.println("color: " + color);
 		System.out.println("year: " + year);
@@ -106,21 +107,15 @@ public class ModelT1000 implements Robot, InitializingBean, DisposableBean {
 		this.soundEnabled = soundEnabled;
 	}
 
-	public void initObject() {
-		System.out.println("init");
-	}
-
-	public void destroyObject() {
-		System.out.println("destroy");
-	}
-
 	@Override
 	public void destroy() throws Exception {
 		System.out.println(this + " - method destroy()");
+
 	}
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		System.out.println(this + " - method init()");
+
 	}
 }

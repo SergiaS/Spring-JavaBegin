@@ -2,11 +2,13 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
-       default-lazy-init="true"
 >
 
-    <bean id="toshibaHand" class="ru.javabegin.RobotSpring.impls.toshiba.ToshibaHand"/>
-    <bean id="toshibaHead" class="ru.javabegin.RobotSpring.impls.toshiba.ToshibaHead"/>
-    <bean id="toshibaLeg" class="ru.javabegin.RobotSpring.impls.toshiba.ToshibaLeg"/>
+
+
+    <import resource="t1000_context.xml" />
+
+    <bean class="ru.javabegin.RobotSpring.main.MyBeanPostProcessor"/>
+
 
 </beans>
