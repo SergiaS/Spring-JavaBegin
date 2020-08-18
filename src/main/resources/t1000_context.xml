@@ -9,7 +9,7 @@
 
 
     <bean id="t1000" class="ru.javabegin.RobotSpring.impls.robot.ModelT1000"
-          parent="baseModel">
+          parent="baseModel" scope="prototype">
 
 
         <constructor-arg value="silver" index="3" type="java.lang.String"/>

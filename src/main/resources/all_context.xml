@@ -10,5 +10,8 @@
 
     <bean class="ru.javabegin.RobotSpring.main.MyBeanPostProcessor"/>
 
+    <bean id="t1000Conveyor" class="ru.javabegin.RobotSpring.impls.conveyor.T1000Conveyor">
+        <lookup-method name="createRobot" bean="t1000"/>
+    </bean>
 
 </beans>
