@@ -15,22 +15,20 @@
     </bean>
 
     <bean id="t1000Pool" class="ru.javabegin.RobotSpring.impls.pool.T1000Pool">
-        <property name="robotCollection">
-            <list>
-                <ref bean="t1000"/>
-                <bean class="ru.javabegin.RobotSpring.impls.robot.ModelT1000" parent="baseModel" scope="prototype">
-                    <constructor-arg value="gold" index="3" type="java.lang.String"/>
-                    <constructor-arg value="2007" index="4" type="int"/>
-                    <constructor-arg value="false" index="5" type="boolean"/>
-                </bean>
-            </list>
-        </property>
-
-        <property name="robotMap">
+        <constructor-arg name="robotCollection">
             <map>
-                <entry key="2011" value-ref="t1000"/>
+                <entry key="2005" value-ref="t1000"/>
+                <entry key="2006" value-ref="t1000"/>
+                <entry key="2005">
+                    <bean class="ru.javabegin.RobotSpring.impls.robot.ModelT1000" parent="baseModel">
+                        <constructor-arg value="gold" index="3" type="java.lang.String"/>
+                        <constructor-arg value="2007" index="4" type="int"/>
+                        <constructor-arg value="false" index="5" type="boolean"/>
+                    </bean>
+                </entry>
             </map>
-        </property>
+        </constructor-arg>
+
     </bean>
 
 </beans>
