@@ -1,4 +1,4 @@
-package ru.javabegin.RobotSpring.impls.robot;
+package ru.javabegin.RobotSpring.replacer;
 
 import org.springframework.beans.factory.support.MethodReplacer;
 

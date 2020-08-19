@@ -2,6 +2,7 @@ package ru.javabegin.RobotSpring.impls.robot;
 
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
+import ru.javabegin.RobotSpring.abstracts.robot.BaseModel;
 import ru.javabegin.RobotSpring.interfaces.Hand;
 import ru.javabegin.RobotSpring.interfaces.Head;
 import ru.javabegin.RobotSpring.interfaces.Leg;

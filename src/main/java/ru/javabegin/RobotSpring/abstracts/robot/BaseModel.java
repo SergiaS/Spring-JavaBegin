@@ -1,4 +1,4 @@
-package ru.javabegin.RobotSpring.impls.robot;
+package ru.javabegin.RobotSpring.abstracts.robot;
 
 import ru.javabegin.RobotSpring.interfaces.Hand;
 import ru.javabegin.RobotSpring.interfaces.Head;
