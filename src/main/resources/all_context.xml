@@ -25,6 +25,12 @@
                 </bean>
             </list>
         </property>
+
+        <property name="robotMap">
+            <map>
+                <entry key="2011" value-ref="t1000"/>
+            </map>
+        </property>
     </bean>
 
 </beans>

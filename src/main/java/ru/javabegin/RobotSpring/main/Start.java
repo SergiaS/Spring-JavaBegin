@@ -26,7 +26,7 @@ public class Start {
 		// terminator1.action();
 
 		T1000Pool t1000Pool = (T1000Pool) context.getBean("t1000Pool");
-		t1000Pool.action();
+		t1000Pool.actionMap();
 
 		((ConfigurableApplicationContext)context).close();// закрытие контекста вручную
 
