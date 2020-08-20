@@ -16,12 +16,12 @@ public class ModelT1000 extends BaseModel implements InitializingBean, Disposabl
 	public ModelT1000() {
 	}
 
-	public ModelT1000(Hand hand, Leg leg, Head head) {
-		super(hand, leg, head);
-	}
+//	public ModelT1000(Hand hand, Leg leg, Head head) {
+//		super(hand, leg, head);
+//	}
 
 	public ModelT1000(Hand hand, Leg leg, Head head, String color, int year, boolean soundEnabled) {
-		super(hand, leg, head);
+//		super(hand, leg, head);
 		this.color = color;
 		this.year = year;
 		this.soundEnabled = soundEnabled;
