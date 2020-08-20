@@ -10,21 +10,22 @@
 
     <bean id="actionReplacer" class="ru.javabegin.RobotSpring.replacer.ActionReplacer"/>
 
-    <bean id="t1000" class="ru.javabegin.RobotSpring.impls.robot.ModelT1000"
-          parent="baseModel" scope="prototype">
+    <bean id="t1000" class="ru.javabegin.RobotSpring.impls.robot.ModelT1000" parent="baseModel" scope="prototype" autowire="byType">
 
-        <constructor-arg value="silver" index="3" type="java.lang.String"/>
-        <constructor-arg value="2006" index="4" type="int"/>
-        <constructor-arg value="true" index="5" type="boolean"/>
+<!--        <constructor-arg value="silver" index="3" type="java.lang.String"/>-->
+<!--        <constructor-arg value="2006" index="4" type="int"/>-->
+<!--        <constructor-arg value="true" index="5" type="boolean"/>-->
 
 <!--        <replaced-method name="action" replacer="actionReplacer"/>-->
     </bean>
 
 
     <bean id="baseModel" abstract="true">
-        <constructor-arg ref="sonyHand" index="0"/>
-        <constructor-arg ref="sonyLeg" index="1"/>
-        <constructor-arg ref="sonyHead" index="2"/>
+
+<!--        <constructor-arg ref="sonyHand" index="0"/>-->
+<!--        <constructor-arg ref="sonyLeg" index="1"/>-->
+<!--        <constructor-arg ref="sonyHead" index="2"/>-->
+
     </bean>
 
 </beans>

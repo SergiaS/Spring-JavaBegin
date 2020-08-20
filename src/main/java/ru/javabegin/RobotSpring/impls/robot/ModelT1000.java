@@ -6,9 +6,8 @@ import ru.javabegin.RobotSpring.abstracts.robot.BaseModel;
 import ru.javabegin.RobotSpring.interfaces.Hand;
 import ru.javabegin.RobotSpring.interfaces.Head;
 import ru.javabegin.RobotSpring.interfaces.Leg;
-import ru.javabegin.RobotSpring.interfaces.Robot;
 
-public class ModelT1000 extends BaseModel implements Robot, InitializingBean, DisposableBean {
+public class ModelT1000 extends BaseModel implements InitializingBean, DisposableBean {
 
 	private String color;
 	private int year;
@@ -29,7 +28,6 @@ public class ModelT1000 extends BaseModel implements Robot, InitializingBean, Di
 	}
 
 	public ModelT1000(String color, int year, boolean soundEnabled) {
-		super();
 		this.color = color;
 		this.year = year;
 		this.soundEnabled = soundEnabled;
@@ -43,6 +41,7 @@ public class ModelT1000 extends BaseModel implements Robot, InitializingBean, Di
 		System.out.println("color: " + color);
 		System.out.println("year: " + year);
 		System.out.println("can play sound: " + soundEnabled);
+		System.out.println();
 	}
 
 	@Override
