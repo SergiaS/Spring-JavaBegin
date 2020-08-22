@@ -8,3 +8,6 @@ target
 *.iml
 log
 *.patch
+
+/src/main/java/ru/javabegin/testing/ownQualifier/
+/src/main/resources/testing-config.xml

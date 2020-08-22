@@ -2,14 +2,20 @@ package ru.javabegin.RobotSpring.impls.robot;
 
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 import ru.javabegin.RobotSpring.abstracts.robot.BaseModel;
+import ru.javabegin.RobotSpring.enums.ColorStyle;
 import ru.javabegin.RobotSpring.interfaces.Hand;
 import ru.javabegin.RobotSpring.interfaces.Head;
 import ru.javabegin.RobotSpring.interfaces.Leg;
 
+@Component
 public class ModelT1000 extends BaseModel implements InitializingBean, DisposableBean {
 
-	private String color;
+	private ColorStyle color;
 	private int year;
 	private boolean soundEnabled;
 
@@ -20,14 +26,26 @@ public class ModelT1000 extends BaseModel implements InitializingBean, Disposabl
 //		super(hand, leg, head);
 //	}
 
-	public ModelT1000(Hand hand, Leg leg, Head head, String color, int year, boolean soundEnabled) {
+	@Bean
+	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+	public ModelT1000 model1() {
+		return new ModelT1000();
+	}
+
+	@Bean
+	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+	public ModelT1000 model2() {
+		return new ModelT1000(ColorStyle.BLACK, 2005, true);
+	}
+
+	public ModelT1000(Hand hand, Leg leg, Head head, ColorStyle color, int year, boolean soundEnabled) {
 //		super(hand, leg, head);
 		this.color = color;
 		this.year = year;
 		this.soundEnabled = soundEnabled;
 	}
 
-	public ModelT1000(String color, int year, boolean soundEnabled) {
+	public ModelT1000(ColorStyle color, int year, boolean soundEnabled) {
 		this.color = color;
 		this.year = year;
 		this.soundEnabled = soundEnabled;
@@ -49,11 +67,11 @@ public class ModelT1000 extends BaseModel implements InitializingBean, Disposabl
 		System.out.println("T1000 is dancing!");
 	}
 
-	public String getColor() {
+	public ColorStyle getColor() {
 		return color;
 	}
 
-	public void setColor(String color) {
+	public void setColor(ColorStyle color) {
 		this.color = color;
 	}
 

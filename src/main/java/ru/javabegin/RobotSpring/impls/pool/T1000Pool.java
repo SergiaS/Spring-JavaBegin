@@ -1,28 +1,29 @@
 package ru.javabegin.RobotSpring.impls.pool;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import ru.javabegin.RobotSpring.enums.ColorStyle;
 import ru.javabegin.RobotSpring.interfaces.Robot;
-import ru.javabegin.RobotSpring.interfaces.RobotPool;
+import ru.javabegin.RobotSpring.qualifiers.RobotQualifier;
 
-import java.util.Collection;
+public class T1000Pool {
 
-public class T1000Pool implements RobotPool {
+	@Autowired
+	@RobotQualifier(sound = false, color = ColorStyle.BLACK)
+	private Robot blackRobot;
 
-	private Collection<Robot> robotCollection;
+	@Autowired
+	@RobotQualifier(sound = true, color = ColorStyle.BLACK)
+	private Robot blackSoundableRobot;
 
-	public T1000Pool(Collection<Robot> robotCollection) {
-		super();
-		this.robotCollection = robotCollection;
+	public T1000Pool() {
+		System.out.println("t1000 pool constructor()");
 	}
 
-	@Override
-	public Collection<Robot> getRobotCollection() {
-		return robotCollection;
+	public Robot getBlackRobot() {
+		return blackRobot;
 	}
 
-	public void beginShow() {
-		for (Robot robot : robotCollection) {
-			robot.action();
-			System.out.println("=============");
-		}
+	public Robot getBlackSoundableRobot() {
+		return blackSoundableRobot;
 	}
 }
