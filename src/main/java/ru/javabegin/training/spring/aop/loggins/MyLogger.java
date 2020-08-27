@@ -1,14 +1,24 @@
 package ru.javabegin.training.spring.aop.loggins;
 
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
 import java.util.Set;
 
 @Component
+@Aspect
 public class MyLogger {
 
+	@Pointcut("execution(* *(..)) && within(ru.javabegin.training.spring.aop.objects.*)")
+	private void allMethods() {
+	};
+
+	@Around("allMethods()")
 	public Object watchTime(ProceedingJoinPoint joinpoint) {
 		long start = System.currentTimeMillis();
 		System.out.println("method begin: " + joinpoint.getSignature().toShortString() + " >>");
@@ -31,6 +41,7 @@ public class MyLogger {
 		return output;
 	}
 
+	@AfterReturning(pointcut = "allMethods()", returning = "obj")
 	public void print(Object obj) {
 
 		System.out.println("Print info begin >>");
