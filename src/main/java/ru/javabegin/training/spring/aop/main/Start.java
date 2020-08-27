@@ -14,7 +14,9 @@ public class Start {
 		fileManager.getExtensionCount("c:\\Windows\\System32");
 		fileManager.getExtensionCount("c:\\Windows\\");
 		fileManager.getExtensionCount("c:\\Windows\\system32\\drivers");
+		fileManager.getExtensionList("c:\\Windows\\system32\\drivers");
 
 		((ConfigurableApplicationContext)context).close();// закрытие контекста вручную
+
 	}
 }
