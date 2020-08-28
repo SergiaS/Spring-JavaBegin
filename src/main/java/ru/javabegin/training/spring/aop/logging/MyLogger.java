@@ -18,7 +18,7 @@ public class MyLogger {
 	private void allMethods() {
 	};
 
-	@Around("allMethods()")
+	@Around("allMethods() && execution(java.util.Map *(..))")
 	public Object watchTime(ProceedingJoinPoint joinpoint) {
 		long start = System.currentTimeMillis();
 		System.out.println("method begin: " + joinpoint.getSignature().toShortString() + " >>");
@@ -41,25 +41,33 @@ public class MyLogger {
 		return output;
 	}
 
-	@AfterReturning(pointcut = "allMethods()", returning = "obj")
-	public void print(Object obj) {
+	@SuppressWarnings("rawtypes")
+	@AfterReturning(pointcut = "allMethods() && execution(java.util.Map *(..))", returning = "obj")
+	public void printMap(Object obj) {
 
-		System.out.println("Print info begin >>");
+		System.out.println("Printing map >>");
 
-		if (obj instanceof Set) {
-			Set set = (Set) obj;
-			for (Object object : set) {
-				System.out.println(object);
-			}
-
-		} else if (obj instanceof Map) {
-			Map map = (Map) obj;
-			for (Object object : map.keySet()) {
-				System.out.println("key=" + object + ", " + map.get(object));
-			}
+		Map map = (Map) obj;
+		for (Object object : map.keySet()) {
+			System.out.println("key=" + object + ", " + map.get(object));
 		}
 
-		System.out.println("Print info end <<");
+		System.out.println("End printing map <<");
+		System.out.println();
+
+	}
+
+	@SuppressWarnings("rawtypes")
+	@AfterReturning(pointcut = "allMethods() && execution(java.util.Set *(..))", returning = "obj")
+	public void printSet(Object obj) {
+
+		System.out.println("Printing set >>");
+		Set set = (Set) obj;
+		for (Object object : set) {
+			System.out.println(object);
+		}
+
+		System.out.println("End printing set <<");
 		System.out.println();
 
 	}
