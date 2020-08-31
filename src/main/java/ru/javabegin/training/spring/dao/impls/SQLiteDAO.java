@@ -64,8 +64,14 @@ public class SQLiteDAO implements MP3Dao {
 	}
 
 	@Override
-	public void delete(MP3 mp3) {
+	public void delete(int id) {
+		String sql = "delete from mp3 where id = ?";
+		jdbcTemplate.update(sql, id);
+	}
 
+	@Override
+	public void delete(MP3 mp3) {
+		delete(mp3.getId());
 	}
 
 	@Override
