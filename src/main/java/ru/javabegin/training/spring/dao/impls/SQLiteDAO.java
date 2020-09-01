@@ -46,10 +46,11 @@ public class SQLiteDAO implements MP3Dao {
 	}
 
 	@Override
-	public void insert(List<MP3> mp3List) {
-		for (MP3 mp3 : mp3List) {
-			insert(mp3);
-		}
+	public int insertList(List<MP3> listMP3) {
+		String sql = "insert into mp3 (name, author) VALUES (:name, :author)";
+		SqlParameterSource[] batch = SqlParameterSourceUtils.createBatch(listMP3.toArray());
+		int[] updateCounts = jdbcTemplate.batchUpdate(sql, batch);
+		return updateCounts.length;
 	}
 
 	@Override

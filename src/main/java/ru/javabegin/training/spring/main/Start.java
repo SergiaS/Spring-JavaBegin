@@ -3,9 +3,7 @@ package ru.javabegin.training.spring.main;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import ru.javabegin.training.spring.dao.impls.SQLiteDAO;
-import ru.javabegin.training.spring.dao.interfaces.MP3Dao;
 import ru.javabegin.training.spring.dao.objects.MP3;
 
 import java.util.ArrayList;
@@ -29,7 +27,7 @@ public class Start {
 		ApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
 		SQLiteDAO sqLiteDAO = (SQLiteDAO) context.getBean("sqliteDAO");
 
-		System.out.println(sqLiteDAO.insert(firstMP3));
+		System.out.println(sqLiteDAO.insertList(list));
 
 		((ConfigurableApplicationContext)context).close();// закрытие контекста вручную
 
