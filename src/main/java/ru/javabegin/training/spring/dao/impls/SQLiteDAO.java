@@ -1,48 +1,48 @@
 package ru.javabegin.training.spring.dao.impls;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSourceUtils;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.stereotype.Component;
+import ru.javabegin.training.spring.dao.interfaces.MP3Dao;
+import ru.javabegin.training.spring.dao.objects.MP3;
+
+import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import javax.sql.DataSource;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.ResultSetExtractor;
-import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
-import org.springframework.stereotype.Component;
-
-import ru.javabegin.training.spring.dao.interfaces.MP3Dao;
-import ru.javabegin.training.spring.dao.objects.MP3;
-
 @Component("sqliteDAO")
 public class SQLiteDAO implements MP3Dao {
 
+	private SimpleJdbcInsert insertMP3;
+
 	private NamedParameterJdbcTemplate jdbcTemplate;
+
+	private DataSource dataSource;
 
 	@Autowired
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
+		this.insertMP3 = new SimpleJdbcInsert(dataSource).withTableName("mp3").usingColumns("name", "author");
+		this.dataSource = dataSource;
 	}
 
 	@Override
 	public int insert(MP3 mp3) {
-		String sql = "insert into mp3 (name, author) VALUES (:name, :author)";
-
-		KeyHolder keyHolder = new GeneratedKeyHolder();
 
 		MapSqlParameterSource params = new MapSqlParameterSource();
 		params.addValue("name", mp3.getName());
 		params.addValue("author", mp3.getAuthor());
 
-		jdbcTemplate.update(sql, params, keyHolder);
-
-		return keyHolder.getKey().intValue();
+		return insertMP3.execute(params);
 	}
 
 	@Override

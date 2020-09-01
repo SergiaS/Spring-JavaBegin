@@ -4,23 +4,32 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import ru.javabegin.training.spring.dao.impls.SQLiteDAO;
 import ru.javabegin.training.spring.dao.interfaces.MP3Dao;
 import ru.javabegin.training.spring.dao.objects.MP3;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Start {
 
 	public static void main(String[] args) {
-		MP3 mp3 = new MP3();
-		mp3.setName("Song name");
-		mp3.setAuthor("Song author");
+		MP3 firstMP3 = new MP3();
+		firstMP3.setName("Song name");
+		firstMP3.setAuthor("Song author");
 
-		// new SQLiteDAO().insertWithJDBC(mp3);
+		MP3 secondMP3 = new MP3();
+		secondMP3.setName("Song name2");
+		secondMP3.setAuthor("Song author2");
+
+		List<MP3> list = new ArrayList<>();
+		list.add(firstMP3);
+		list.add(secondMP3);
 
 		ApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
-		MP3Dao sqLiteDAO = (MP3Dao) context.getBean("sqliteDAO");
+		SQLiteDAO sqLiteDAO = (SQLiteDAO) context.getBean("sqliteDAO");
 
-		// указан неверный id записи - при запуске выйдет ошибка
-		System.out.println(sqLiteDAO.getMP3ByID(1556));
+		System.out.println(sqLiteDAO.insert(firstMP3));
 
 		((ConfigurableApplicationContext)context).close();// закрытие контекста вручную
 
