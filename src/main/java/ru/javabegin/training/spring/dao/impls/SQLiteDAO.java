@@ -48,8 +48,21 @@ public class SQLiteDAO implements MP3Dao {
 	@Override
 	public int insertList(List<MP3> listMP3) {
 		String sql = "insert into mp3 (name, author) VALUES (:name, :author)";
-		SqlParameterSource[] batch = SqlParameterSourceUtils.createBatch(listMP3.toArray());
-		int[] updateCounts = jdbcTemplate.batchUpdate(sql, batch);
+
+		SqlParameterSource[] params = new SqlParameterSource[listMP3.size()];
+		int i = 0;
+
+		for (MP3 mp3 : listMP3) {
+			MapSqlParameterSource p = new MapSqlParameterSource();
+			p.addValue("name", mp3.getName());
+			p.addValue("author", mp3.getAuthor());
+
+			params[i] = p;
+			i++;
+		}
+
+//		SqlParameterSource[] batch = SqlParameterSourceUtils.createBatch(listMP3.toArray());
+		int[] updateCounts = jdbcTemplate.batchUpdate(sql, params);
 		return updateCounts.length;
 	}
 
