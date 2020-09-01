@@ -13,12 +13,14 @@ public class Start {
 
 	public static void main(String[] args) {
 		MP3 firstMP3 = new MP3();
-		firstMP3.setName("Song name");
-		firstMP3.setAuthor("Song author");
+		firstMP3.setId(28);
+		firstMP3.setName("Bla name");
+		firstMP3.setAuthor("Bla author");
 
 		MP3 secondMP3 = new MP3();
-		secondMP3.setName("Song name2");
-		secondMP3.setAuthor("Song author2");
+		secondMP3.setId(29);
+		secondMP3.setName("Bla name2");
+		secondMP3.setAuthor("Bla author2");
 
 		List<MP3> list = new ArrayList<>();
 		list.add(firstMP3);
@@ -27,7 +29,7 @@ public class Start {
 		ApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
 		SQLiteDAO sqLiteDAO = (SQLiteDAO) context.getBean("sqliteDAO");
 
-		System.out.println(sqLiteDAO.insertList(list));
+		System.out.println(sqLiteDAO.batchUpdate(list));
 
 		((ConfigurableApplicationContext)context).close();// закрытие контекста вручную
 

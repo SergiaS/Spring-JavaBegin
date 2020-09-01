@@ -1,6 +1,7 @@
 package ru.javabegin.training.spring.dao.impls;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -13,6 +14,7 @@ import ru.javabegin.training.spring.dao.interfaces.MP3Dao;
 import ru.javabegin.training.spring.dao.objects.MP3;
 
 import javax.sql.DataSource;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -47,6 +49,7 @@ public class SQLiteDAO implements MP3Dao {
 
 	@Override
 	public int insertList(List<MP3> listMP3) {
+
 		String sql = "insert into mp3 (name, author) VALUES (:name, :author)";
 
 		SqlParameterSource[] params = new SqlParameterSource[listMP3.size()];
@@ -64,6 +67,16 @@ public class SQLiteDAO implements MP3Dao {
 //		SqlParameterSource[] batch = SqlParameterSourceUtils.createBatch(listMP3.toArray());
 		int[] updateCounts = jdbcTemplate.batchUpdate(sql, params);
 		return updateCounts.length;
+	}
+
+	@Override
+	public int[] batchUpdate(List<MP3> mp3List) {
+
+//		String sql = "update into mp3 (name, author) values (:name, :author)";
+
+		return this.jdbcTemplate.batchUpdate(
+				"update mp3 set author = :author, name = :name where id = :id",
+				SqlParameterSourceUtils.createBatch(mp3List));
 	}
 
 	@Override

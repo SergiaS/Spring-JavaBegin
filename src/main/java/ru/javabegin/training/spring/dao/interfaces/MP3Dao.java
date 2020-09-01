@@ -11,6 +11,8 @@ public interface MP3Dao {
 
 	int insertList(List<MP3> mp3List);
 
+	int[] batchUpdate(List<MP3> mp3List);
+
 	void delete(MP3 mp3);
 
 	void delete(int id);
