@@ -16,6 +16,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import ru.javabegin.training.spring.dao.interfaces.MP3Dao;
 import ru.javabegin.training.spring.dao.objects.Author;
@@ -35,6 +36,7 @@ public class SQLiteDAO implements MP3Dao {
 	}
 
 	@Override
+	@Transactional
 	public int insert(MP3 mp3) {
 
 		String sqlInsertAuthor = "insert into author (name) VALUES (:authorName)";
@@ -50,7 +52,8 @@ public class SQLiteDAO implements MP3Dao {
 
 		int author_id = keyHolder.getKey().intValue();
 
-		String sqlInsertMP3 = "insert into mp3 (author_id, name) VALUES (:authorId, :mp3Name)";
+		// неверное имя поля author_id2
+		String sqlInsertMP3 = "insert into mp3 (author_id2, name) VALUES (:authorId, :mp3Name)";
 
 		params = new MapSqlParameterSource();
 		params.addValue("mp3Name", mp3.getName());
