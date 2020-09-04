@@ -38,7 +38,7 @@ public class SQLiteDAO implements MP3Dao {
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED)
+	@Transactional(propagation = Propagation.REQUIRED, timeout = 1)
 	public int insertMP3(MP3 mp3) {
 
 		System.out.println(TransactionSynchronizationManager.isActualTransactionActive());
@@ -58,6 +58,12 @@ public class SQLiteDAO implements MP3Dao {
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public int insertAuthor(Author author) {
+
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 
 		System.out.println(TransactionSynchronizationManager.isActualTransactionActive());
 
