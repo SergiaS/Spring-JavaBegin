@@ -3,11 +3,12 @@ package ru.javabegin.training.spring.dao.interfaces;
 import java.util.List;
 import java.util.Map;
 
+import ru.javabegin.training.spring.dao.objects.Author;
 import ru.javabegin.training.spring.dao.objects.MP3;
 
 public interface MP3Dao {
 
-	int insert(MP3 mp3);
+	int insertMP3(MP3 mp3);
 
 	int insertList(List<MP3> mp3List);
 
@@ -24,5 +25,7 @@ public interface MP3Dao {
 	int getMP3Count();
 
 	Map<String, Integer> getStat();
+
+	int insertAuthor(Author author);
 
 }
